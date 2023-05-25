@@ -1,9 +1,13 @@
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
-local Window = Library.CreateLib("Bedwars || LuffyV1", "Midnight")
+local Window = Library.CreateLib("Bedwars || LuffyDevV1", "Midnight")
     -- MAIN
     local Main = Window:NewTab("Main")
     local MainSection = Main:NewSection("Main")
 
+    local Animation = Window:NewTab("Animation")
+    local AnimationSection = Animation:NewSection("Animation")
+
+--Made By luffyv1
 
     MainSection:NewSlider("Walkspeed", "Change Your walkspeed", 23, 16, function(s) 
         game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = s
@@ -18,26 +22,22 @@ local Window = Library.CreateLib("Bedwars || LuffyV1", "Midnight")
         local InfiniteJumpEnabled = true game:GetService("UserInputService").JumpRequest:connect(function()  if InfiniteJumpEnabled then   game:GetService"Players".LocalPlayer.Character:FindFirstChildOfClass'Humanoid':ChangeState("Jumping")  end end)
     end)
 
+    MainSection:NewToggle("Auto Spam", "Nani", function(state)
+        local settings = {
+            AutoChat_Time = 1,
+            AutoChat_Delay = 1,
+            AutoChat = true,
+         }
+         
+         local chatrem = game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest
+         
+         while task.wait(settings.AutoChat_Time) do
+             chatrem:FireServer('Luffyv1 On Top', "All")
+             print("Sent Message")
+         end
+    end)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    --esp
     MainSection:NewButton("Esp", "Useing esp For find player", function()
         local Players = game:GetService("Players"):GetChildren()
 local RunService = game:GetService("RunService")
@@ -82,4 +82,24 @@ RunService.Heartbeat:Connect(function()
         end
 end
 end)
+    end)
+
+
+    
+--Animation
+    AnimationSection:NewButton("Levitation", "?", function()
+        while true do
+            wait(1)
+            for i, player in ipairs(game.Players:GetChildren()) do
+            local Animate = game.Players.LocalPlayer.Character.Animate
+        Animate.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=10921132962"
+        Animate.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=10921133721"
+        Animate.walk.WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=10921140719"
+        Animate.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=10921135644"
+        Animate.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=10921137402"
+        Animate.climb.ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=10921132092"
+        Animate.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=10921136539"
+        game.Players.LocalPlayer.Character.Humanoid.Jump = false
+            end
+        end
     end)
